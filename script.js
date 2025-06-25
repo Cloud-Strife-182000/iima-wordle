@@ -171,6 +171,7 @@ function resetGame() {
   currentRow = 0;
   currentGuess = '';
   document.getElementById('win-message').style.display = 'none';
+  document.getElementById('congratulations-message').style.display = 'none'; // Hide congratulations message
   document.getElementById('consolation-message').style.display = 'none';
   document.getElementById('next-word-button').style.display = 'none';
   document.getElementById('reset-game-button').style.display = 'none';
