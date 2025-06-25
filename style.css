@@ -1,0 +1,207 @@
+/* General body styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: #fff; /* Set the background to white */
+  color: #333;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* IIMA Wordle title in black */
+h1 {
+  font-size: 2.5rem;
+  color: black; /* Set IIMA Wordle text to black */
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+/* IIMA Media Cell Logo */
+#logo {
+  width: 200px;
+  height: auto;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Timer Styling */
+#timer {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 10px;
+  font-weight: bold;
+  background-color: #fcdc5b; /* MediaCell yellow */
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* Game Board */
+#game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Rows and boxes */
+#game-board .row {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  display: none; /* Initially hide rows */
+}
+
+#game-board .row:first-child {
+  display: flex; /* Only the first row is visible initially */
+}
+
+.box {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #999;  /* Darker border */
+  margin: 5px;
+  text-align: center;
+  font-size: 24px;
+  text-transform: uppercase;
+  background-color: #f0f0f0; /* Light gray background for better visibility */
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input[type="text"] {
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: #f0f0f0; /* Same light gray background for input boxes */
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  background-color: #e0e0e0; /* Slightly darker gray when focused */
+}
+
+/* Button Styling */
+button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+  margin-bottom: 10px; /* Add space between buttons */
+}
+
+#check-button {
+  background-color: #28a745; /* Green for check word */
+  color: white;
+}
+
+#next-word-button, #reset-game-button {
+  background-color: #007bff; /* IIMA blue */
+  color: white;
+}
+
+#next-word-button:hover, #reset-game-button:hover {
+  transform: scale(1.05);
+}
+
+#next-word-button:focus, #reset-game-button:focus {
+  outline: none;
+}
+
+/* Button container (to center them) */
+#buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Message Styling */
+.message {
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+#win-message {
+  background-color: #28a745; /* Green for win */
+  color: white;
+}
+
+#consolation-message {
+  background-color: #ff9800; /* Yellow for consolation */
+  color: white;
+}
+
+/* Score Message */
+#score-message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .box, input[type="text"] {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #timer {
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+
+  #game-board {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .box, input[type="text"] {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    line-height: 30px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  #timer {
+    font-size: 1rem;
+    padding: 6px;
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IIM-A Wordle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Title Bar -->
+  <div id="title-bar">
+    <img id="logo" src="images/Media Cell Logo.png" alt="IIMA Media Cell Logo" />
+    <h1>IIMA Wordle</h1>
+  </div>
+
+  <!-- Timer -->
+  <div id="timer">Time: 0s</div>
+
+  <!-- Game Board -->
+  <div id="game-board"></div>
+
+  <!-- Buttons -->
+  <button id="check-button" onclick="checkGuess()">Check Word</button>
+  <div id="buttons-container">
+    <button id="next-word-button" onclick="nextWord()" style="display: none;">Next Word</button>
+    <button id="reset-game-button" onclick="resetGame()" style="display: none;">Restart Game</button>
+  </div>
+
+  <!-- Messages -->
+  <div id="win-message" class="message" style="display: none;">Congratulations! You guessed the word correctly!</div>
+  <div id="congratulations-message" class="message" style="display: none;">Congratulations! You have completed the game.</div>
+  <div id="consolation-message" class="message" style="display: none;">
+    Sorry, you've used all your attempts! The correct word was: <span id="correct-word"></span>
+  </div>
+  <div id="score-message" class="message" style="display: none;"></div>
+
+  <script src="words.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
