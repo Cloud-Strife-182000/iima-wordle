@@ -39,6 +39,11 @@
 
   <div class="g_id_signin" data-type="standard" id="google-sign-in-btn"></div>
 
+  <!-- Add Start button below user info -->
+  <div id="start-button-container" style="display: none;">
+    <button id="start-button" onclick="startGame()">Start Game</button>
+  </div>
+
   <!-- Hide all game elements until user is signed in -->
   <div id="game-elements" style="display: none;">
 
@@ -145,13 +150,6 @@
         document.getElementById('google-sign-in-btn').style.display = 'none';
         document.getElementById('user-info').style.display = 'block';
         document.getElementById('game-elements').style.display = 'block';
-
-        document.getElementById('welcome-message').style.display = 'none';
-        document.getElementById('info-sidebar').style.display = 'block'; // Show sidebar
-        document.getElementById('leaderboard-info').style.display = 'block';
-
-        createBoard();
-        startTimer();
 
       } else {
         // If the user is not signed in, show the Google Sign-In button

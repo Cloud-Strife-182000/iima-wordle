@@ -268,6 +268,21 @@ function updateCurrentWordDisplay() {
   hintText.textContent = HINTS[currentWordIndex]; // Update the hint text
 }
 
+// Start the game when the start button is clicked
+function startGame() {
+  
+  document.getElementById('start-button-container').style.display = 'none';  // Hide the start button after clicking
+  document.getElementById('game-elements').style.display = 'block';  // Show the game elements
+
+  document.getElementById('welcome-message').style.display = 'none';
+  document.getElementById('info-sidebar').style.display = 'block'; // Show sidebar
+  document.getElementById('leaderboard-info').style.display = 'block';
+
+  createBoard();
+  startTimer();
+
+}
+
 // After the game is won, send the score to the backend (to add to the leaderboard)
 function sendScoreToBackend(email, score) {
   fetch('/add-score', {
