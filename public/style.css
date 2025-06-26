@@ -370,7 +370,7 @@ button:focus {
 /* Styling for the leaderboard info text */
 #leaderboard-info {
   font-size: 1rem;
-  color: #777; /* Slightly lighter text color */
+  color: #000000;
   margin-top: 30px;
   padding: 10px;
   background-color: #f0f0f0; /* Light gray background */
