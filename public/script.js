@@ -49,10 +49,13 @@ function handleCredentialResponse(response) {
 
   // Store the user's email in localStorage
   const email = userInfo.email;
-  localStorage.setItem('userEmail', email);  // Store email in localStorage
 
   // Display user's email
   document.getElementById('user-email').textContent = email;
+
+  // Store user info in localStorage to persist sign-in state
+  localStorage.setItem('userEmail', email);
+  localStorage.setItem('userSignedIn', true);
 
   // Hide the Google Sign-In button and show the game elements
   document.getElementById('google-sign-in-btn').style.display = 'none';

@@ -109,39 +109,6 @@
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <script>
-    // Handle Google Login response
-    function handleCredentialResponse(response) {
-      const id_token = response.credential;
-      console.log('ID Token:', id_token);
-
-      // Decode the JWT token to get user details
-      const userInfo = decodeJwtResponse(id_token);
-      console.log('User Info:', userInfo);
-
-      // Display user's email
-      const email = userInfo.email;
-      document.getElementById('user-email').textContent = email;
-
-      // Store user info in localStorage to persist sign-in state
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userSignedIn', true);
-
-      // Hide the Google Sign-In button and show the game elements
-      document.getElementById('google-sign-in-btn').style.display = 'none';
-      document.getElementById('user-info').style.display = 'block';
-      document.getElementById('game-elements').style.display = 'block';
-    }
-
-    // Decode JWT Token to extract user details
-    function decodeJwtResponse(id_token) {
-      const base64Url = id_token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-
-      return JSON.parse(jsonPayload);
-    }
 
     // Initial check to hide the game elements if the user is not signed in
     window.onload = () => {
