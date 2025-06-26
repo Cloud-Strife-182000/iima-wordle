@@ -18,17 +18,24 @@ h1 {
 
 /* IIMA Media Cell Logo */
 #logo {
-  width: 200px;
+  width: 100px;  /* Adjust the size of the logo */
   height: auto;
-  margin-right: 10px;
-  margin-top: 20px;
+  margin-bottom: 10px;  /* Add space between the logo and the title */
 }
 
 #header {
   display: flex;
+  flex-direction: column; /* Stack logo above title */
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+}
+
+/* Google Sign-in Button */
+.g_id_signin {
+  width: 250px;
+  margin: 20px auto;
+  text-align: center;
 }
 
 /* Timer Styling */
@@ -101,13 +108,7 @@ button {
   cursor: pointer;
   border: none;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 10px;
   margin-bottom: 10px; /* Add space between buttons */
-}
-
-#check-button {
-  background-color: #28a745; /* Green for check word */
-  color: white;
 }
 
 #next-word-button, #reset-game-button {
@@ -120,6 +121,48 @@ button {
 }
 
 #next-word-button:focus, #reset-game-button:focus {
+  outline: none;
+}
+
+/* Check Word Button */
+#check-word-button {
+  background-color: #28a745; /* Green color */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 10px; /* Add space between buttons */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#check-word-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Auto-scale on hover */
+}
+
+#check-word-button:focus {
+  outline: none;
+}
+
+/* Style for Leaderboard button */
+#leaderboard-button {
+  background-color: #28a745; /* Green color */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#leaderboard-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05);
+}
+
+#leaderboard-button:focus {
   outline: none;
 }
 
@@ -152,6 +195,11 @@ button:focus {
 
 #consolation-message {
   background-color: #ff9800; /* Yellow for consolation */
+  color: white;
+}
+
+#congratulations-message {
+  background-color: #f39c12; /* Yellow for completion */
   color: white;
 }
 

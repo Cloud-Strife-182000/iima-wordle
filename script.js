@@ -15,6 +15,38 @@ let guessesUsed = 0;
 let score = 0;
 let individualScores = [];  // To track score for each word
 
+// Google login logic
+function handleCredentialResponse(response) {
+  const id_token = response.credential;
+  console.log('ID Token:', id_token);
+
+  // Decode the JWT token to get user details
+  const userInfo = decodeJwtResponse(id_token);
+  console.log('User Info:', userInfo);
+
+  // Display user's email
+  const email = userInfo.email;
+  document.getElementById('user-email').textContent = email;
+
+  // Hide the Google Sign-In button and show the game elements
+  document.getElementById('google-sign-in-btn').style.display = 'none';
+  document.getElementById('user-info').style.display = 'block';
+  document.getElementById('game-elements').style.display = 'block';
+  document.getElementById('check-word-button').style.display = 'inline-block'; // Show the "Check Word" button
+}
+
+// Decode JWT Token to extract user details
+function decodeJwtResponse(id_token) {
+  const base64Url = id_token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
+
+// Create game board for the wordle game
 function createBoard() {
   const board = document.getElementById('game-board');
   board.innerHTML = '';  // Clear the previous board
@@ -36,6 +68,7 @@ function createBoard() {
   }
 }
 
+// Timer logic
 function startTimer() {
   timerInterval = setInterval(() => {
     timer++;
@@ -47,6 +80,7 @@ function stopTimer() {
   clearInterval(timerInterval);  // Stop the timer when the game is won
 }
 
+// Move to the next box in the row
 function handleInput(event) {
   const inputBox = event.target;
   const row = inputBox.parentElement;
@@ -61,6 +95,7 @@ function handleInput(event) {
   }
 }
 
+// Check the guess against the secret word
 function checkGuess() {
   if (gameWon) return;  // Stop further checks if the game is already won
 
@@ -131,15 +166,15 @@ function checkGuess() {
   currentRow++;
 }
 
+// Calculate score based on number of guesses and time
 function calculateScore() {
-  // Calculate score based on guesses and time
-  // Fewer guesses = more points
   let guessScore = Math.max(10 - guessesUsed, 1) * 10;  // Max score is 100 for guessing in 1 try
   let timeScore = Math.max(100 - (timer / 10), 10);  // Max score of 100 based on time
 
   score = guessScore + timeScore;  // Total score
 }
 
+// Display total score
 function displayScore() {
   const scoreMessage = document.getElementById('score-message');
   const totalScore = individualScores.reduce((acc, score) => acc + score, 0);  // Sum all individual scores
@@ -147,6 +182,7 @@ function displayScore() {
   scoreMessage.style.display = 'block';  // Show the score message
 }
 
+// Move to the next word in the game
 function nextWord() {
   if (currentWordIndex < currentWords.length - 1) {
     currentWordIndex++;
@@ -163,8 +199,8 @@ function nextWord() {
   }
 }
 
+// Reset the game to start over
 function resetGame() {
-  // Reset game variables to start over
   currentWordIndex = 0;
   secretWord = currentWords[currentWordIndex].toLowerCase();
   gameWon = false;
@@ -177,7 +213,6 @@ function resetGame() {
   document.getElementById('reset-game-button').style.display = 'none';
   document.getElementById('score-message').style.display = 'none'; // Hide score
 
-  // Reset the board for the first word
   createBoard();
   timer = 0;
   document.getElementById('timer').textContent = `Time: 0s`; // Reset timer display
@@ -185,6 +220,7 @@ function resetGame() {
   startTimer(); // Start the timer again
 }
 
+// Initialize the game when the page loads
 window.onload = () => {
   createBoard();
   startTimer();  // Start the timer when the page loads

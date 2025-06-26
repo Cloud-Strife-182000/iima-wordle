@@ -3,38 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IIM-A Wordle</title>
+  <title>IIMA Wordle</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Title Bar -->
-  <div id="title-bar">
+  <div id="header">
     <img id="logo" src="images/Media Cell Logo.png" alt="IIMA Media Cell Logo" />
     <h1>IIMA Wordle</h1>
   </div>
 
-  <!-- Timer -->
-  <div id="timer">Time: 0s</div>
-
-  <!-- Game Board -->
-  <div id="game-board"></div>
-
-  <!-- Buttons -->
-  <button id="check-button" onclick="checkGuess()">Check Word</button>
-  <div id="buttons-container">
-    <button id="next-word-button" onclick="nextWord()" style="display: none;">Next Word</button>
-    <button id="reset-game-button" onclick="resetGame()" style="display: none;">Restart Game</button>
+  <!-- Show user email after successful login -->
+  <div id="user-info" style="display: none;">
+    <p>Welcome, <span id="user-email"></span></p>
   </div>
 
-  <!-- Messages -->
-  <div id="win-message" class="message" style="display: none;">Congratulations! You guessed the word correctly!</div>
-  <div id="congratulations-message" class="message" style="display: none;">Congratulations! You have completed the game.</div>
-  <div id="consolation-message" class="message" style="display: none;">
-    Sorry, you've used all your attempts! The correct word was: <span id="correct-word"></span>
+  <!-- Google Sign-in Button -->
+  <div id="g_id_onload"
+       data-client_id="1035999048110-9f4kn35u6iicg981ievos9mgki80fds9.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse">
   </div>
-  <div id="score-message" class="message" style="display: none;"></div>
+
+  <div class="g_id_signin" data-type="standard" id="google-sign-in-btn"></div>
+
+  <!-- Hide all game elements until user is signed in -->
+  <div id="game-elements" style="display: none;">
+    <div id="game-board"></div>
+    <div id="keyboard"></div>
+
+    <div id="win-message" class="message" style="display: none;">
+      Congratulations! You guessed the word correctly!
+    </div>
+    <div id="consolation-message" class="message" style="display: none;">
+      Sorry, you've used all your attempts! The correct word was: <span id="correct-word"></span>
+    </div>
+    <div id="congratulations-message" class="message" style="display: none;">
+      Congratulations! You have completed the game.
+    </div>
+    <div id="score-message" class="message" style="display: none;"></div>
+
+    <div id="buttons-container">
+      <!-- Add the Check Word button here -->
+      <button id="check-word-button" onclick="checkGuess()">Check Word</button>
+      <button id="next-word-button" style="display: none;" onclick="nextWord()">Next Word</button>
+      <button id="reset-game-button" style="display: none;" onclick="resetGame()">Restart Game</button>
+
+      <!-- Add the Leaderboard button here -->
+      <button id="leaderboard-button" onclick="window.location.href='leaderboard.html'">View Leaderboard</button>
+    </div>
+  </div>
 
   <script src="words.js"></script>
   <script src="script.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <script>
+    // Handle Google Login response
+    function handleCredentialResponse(response) {
+      const id_token = response.credential;
+      console.log('ID Token:', id_token);
+
+      // Decode the JWT token to get user details
+      const userInfo = decodeJwtResponse(id_token);
+      console.log('User Info:', userInfo);
+
+      // Display user's email
+      const email = userInfo.email;
+      document.getElementById('user-email').textContent = email;
+
+      // Hide the Google Sign-In button and show the game elements
+      document.getElementById('google-sign-in-btn').style.display = 'none';
+      document.getElementById('user-info').style.display = 'block';
+      document.getElementById('game-elements').style.display = 'block';
+    }
+
+    // Decode JWT Token to extract user details
+    function decodeJwtResponse(id_token) {
+      const base64Url = id_token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload);
+    }
+
+    // Initial check to hide the game elements if the user is not signed in
+    window.onload = () => {
+      // Check if user is already signed in (If not, game elements are hidden)
+      const isSignedIn = false;  // Initially, assume the user is not signed in
+      if (!isSignedIn) {
+        document.getElementById('game-elements').style.display = 'none';
+      }
+      createBoard();
+      startTimer();  // Start the timer when the page loads
+
+      document.getElementById('win-message').style.display = 'none';
+      document.getElementById('consolation-message').style.display = 'none';
+      document.getElementById('score-message').style.display = 'none'; // Initially hide the score message
+      document.getElementById('reset-game-button').style.display = 'none'; // Initially hide the reset button
+      document.getElementById('congratulations-message').style.display = 'none'; // Initially hide the congratulations message
+    };
+  </script>
 </body>
 </html>
