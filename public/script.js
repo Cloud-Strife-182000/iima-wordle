@@ -264,8 +264,8 @@ function updateCurrentWordDisplay() {
   currentWordText.textContent = `Word ${currentWordIndex + 1}/${totalWords}`;
   
   // Display the hint for the current word
-  const hintText = document.getElementById('current-hint');
-  hintText.textContent = `Hint: ${HINTS[currentWordIndex]}`;
+  const hintText = document.getElementById('hint-text');
+  hintText.textContent = HINTS[currentWordIndex]; // Update the hint text
 }
 
 // After the game is won, send the score to the backend (to add to the leaderboard)
