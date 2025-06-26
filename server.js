@@ -14,12 +14,12 @@ const client = new Client({
 
 client.connect();
 
-// Create leaderboard table if it doesn't exist
+// Create leaderboard table if it doesn't exist, allowing floating-point scores
 client.query(`
   CREATE TABLE IF NOT EXISTS leaderboard (
     id SERIAL PRIMARY KEY,
     player_name VARCHAR(100),
-    score INT,
+    score NUMERIC,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
 `, (err, res) => {
@@ -36,17 +36,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API endpoint to add a score
 app.post('/add-score', express.json(), (req, res) => {
   const { playerName, score } = req.body;
+  console.log('Received score:', playerName, score); // Log received data
   
-  // Insert the score and player name into the leaderboard table
+  // Insert the score into the database
   client.query('INSERT INTO leaderboard (player_name, score) VALUES ($1, $2)', [playerName, score], (err, result) => {
     if (err) {
-      console.error(err);
+      console.error('Error inserting score:', err);
       res.status(500).send('Error saving score');
     } else {
+      console.log('Score saved successfully');
       res.status(200).send('Score saved successfully');
     }
   });
 });
+
 
 // API endpoint to get the leaderboard
 app.get('/leaderboard', (req, res) => {
