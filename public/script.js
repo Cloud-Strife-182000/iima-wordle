@@ -198,6 +198,9 @@ function nextWord() {
     // Reset the board for the next word
     createBoard();
     currentGuess = '';
+    timer = 0;
+    clearInterval(timerInterval); // Stop the timer
+    startTimer(); // Start the timer again
   }
 }
 
