@@ -269,7 +269,7 @@ function updateCurrentWordDisplay() {
   currentWordText.textContent = `Word ${currentWordIndex + 1}/${totalWords}`;
   
   // Find the index of the current word in the WORDS array
-  const wordIndex = WORDS.indexOf(currentWord);
+  const wordIndex = WORDS.indexOf(secretWord);
   
   // Display the hint for the current word
   const hintText = document.getElementById('hint-text');
