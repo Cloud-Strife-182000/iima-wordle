@@ -133,6 +133,9 @@
         document.getElementById('welcome-message').style.display = 'none';
         document.getElementById('info-sidebar').style.display = 'block'; // Show sidebar
 
+        createBoard();
+        startTimer();
+
       } else {
         // If the user is not signed in, show the Google Sign-In button
         document.getElementById('google-sign-in-btn').style.display = 'block';
@@ -141,9 +144,6 @@
         document.getElementById('info-sidebar').style.display = 'none';
         
       }
-
-      createBoard();
-      startTimer();  // Start the timer when the page loads
 
       // Initially hide game-related messages and buttons
       document.getElementById('win-message').style.display = 'none';
