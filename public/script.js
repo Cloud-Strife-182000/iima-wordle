@@ -220,6 +220,23 @@ function resetGame() {
   startTimer(); // Start the timer again
 }
 
+// After the game is won, send the score to the backend (to add to the leaderboard)
+function sendScoreToBackend(playerName, score) {
+  fetch('/add-score', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ playerName, score }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Score submitted successfully');
+    // Optionally, you could fetch and update the leaderboard here to reflect the changes.
+  })
+  .catch(error => console.error('Error submitting score:', error));
+}
+
 // Initialize the game when the page loads
 window.onload = () => {
   createBoard();

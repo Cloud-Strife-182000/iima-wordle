@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/add-score', express.json(), (req, res) => {
   const { playerName, score } = req.body;
   
+  // Insert the score and player name into the leaderboard table
   client.query('INSERT INTO leaderboard (player_name, score) VALUES ($1, $2)', [playerName, score], (err, result) => {
     if (err) {
       console.error(err);
@@ -49,6 +50,7 @@ app.post('/add-score', express.json(), (req, res) => {
 
 // API endpoint to get the leaderboard
 app.get('/leaderboard', (req, res) => {
+  // Fetch the top 10 scores from the leaderboard table
   client.query('SELECT player_name, score FROM leaderboard ORDER BY score DESC LIMIT 10', (err, result) => {
     if (err) {
       console.error(err);
