@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const { Client } = require('pg');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -29,8 +30,11 @@ client.query(`
   }
 });
 
+// Serve static files (HTML, CSS, JS) from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // API endpoint to add a score
-app.post('/add-score', (req, res) => {
+app.post('/add-score', express.json(), (req, res) => {
   const { playerName, score } = req.body;
   
   client.query('INSERT INTO leaderboard (player_name, score) VALUES ($1, $2)', [playerName, score], (err, result) => {
@@ -53,6 +57,11 @@ app.get('/leaderboard', (req, res) => {
       res.json(result.rows);  // Send back the leaderboard as JSON
     }
   });
+});
+
+// Handle the root route to serve the main index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start the server
