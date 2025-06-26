@@ -14,6 +14,7 @@ let timerInterval;
 let guessesUsed = 0;
 let score = 0;
 let individualScores = [];  // To track score for each word
+const email = '';  // Placeholder for user's email
 
 // Google login logic
 function handleCredentialResponse(response) {
@@ -25,7 +26,7 @@ function handleCredentialResponse(response) {
   console.log('User Info:', userInfo);
 
   // Display user's email
-  const email = userInfo.email;
+  email = userInfo.email;
   document.getElementById('user-email').textContent = email;
 
   // Hide the Google Sign-In button and show the game elements
@@ -145,6 +146,7 @@ function checkGuess() {
     if (currentWordIndex === currentWords.length - 1) {
       document.getElementById('reset-game-button').style.display = 'block';  // Show the reset button
       displayScore();  // Show the total score once the game is completed
+      sendScoreToBackend(email, score);  // Send the score to the backend
     } else {
       document.getElementById('next-word-button').style.display = 'block';  // Show the next word button
     }
