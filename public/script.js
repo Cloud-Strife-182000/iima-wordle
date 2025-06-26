@@ -268,9 +268,12 @@ function updateCurrentWordDisplay() {
   const currentWordText = document.getElementById('current-word-text');
   currentWordText.textContent = `Word ${currentWordIndex + 1}/${totalWords}`;
   
+  // Find the index of the current word in the WORDS array
+  const wordIndex = WORDS.indexOf(currentWord);
+  
   // Display the hint for the current word
   const hintText = document.getElementById('hint-text');
-  hintText.textContent = HINTS[currentWordIndex]; // Update the hint text
+  hintText.textContent = HINTS[wordIndex]; // Use the index to fetch the correct hint
 }
 
 // Start the game when the start button is clicked
