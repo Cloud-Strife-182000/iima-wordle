@@ -44,6 +44,11 @@
     <button id="start-button" onclick="startGame()">Start Game</button>
   </div>
 
+  <!-- Add Sign Out button below the Start Game button -->
+  <div id="signout-button-container" style="display: none;">
+    <button id="signout-button" onclick="signOut()">Sign Out</button>
+  </div>
+
   <!-- Hide all game elements until user is signed in -->
   <div id="game-elements" style="display: none;">
 
@@ -151,6 +156,7 @@
         document.getElementById('welcome-message').style.display = 'none';
         document.getElementById('user-info').style.display = 'block';
         document.getElementById('start-button-container').style.display = 'block';
+        document.getElementById('signout-button-container').style.display = 'block'; // Show sign-out button
 
       } else {
         // If the user is not signed in, show the Google Sign-In button

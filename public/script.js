@@ -288,6 +288,7 @@ function updateCurrentWordDisplay() {
 function startGame() {
 
   document.getElementById('start-button-container').style.display = 'none';  // Hide the start button after clicking
+  document.getElementById('signout-button-container').style.display = 'none'; // Hide the signout button
   document.getElementById('game-elements').style.display = 'block';  // Show the game elements
 
   document.getElementById('welcome-message').style.display = 'none';
@@ -314,6 +315,26 @@ function sendScoreToBackend(email, score) {
     // Optionally, you could fetch and update the leaderboard here to reflect the changes.
   })
   .catch(error => console.error('Error submitting score:', error));
+}
+
+// Sign out the user and reset the game state
+function signOut() {
+  
+  // Hide game elements and show the sign-in button
+  document.getElementById('game-elements').style.display = 'none';
+  document.getElementById('google-sign-in-btn').style.display = 'block';
+  document.getElementById('start-button-container').style.display = 'none';  // Hide the start button
+  document.getElementById('signout-button-container').style.display = 'none'; // Hide the sign-out button
+
+  // Reset other elements (like user email and welcome message)
+  document.getElementById('user-email').textContent = '';
+  document.getElementById('user-info').style.display = 'none';
+  document.getElementById('welcome-message').style.display = 'block'; // Show welcome message again
+
+  // Reset the timer and game state
+  clearInterval(timerInterval);
+  timer = 0;
+  document.getElementById('timer').textContent = 'Time: 0s';
 }
 
 // Initialize the game when the page loads
