@@ -393,7 +393,6 @@ button:focus {
   cursor: pointer;
   margin-top: 20px;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  display: none; /* Initially hide the start button */
 }
 
 #start-button:hover {
