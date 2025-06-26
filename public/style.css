@@ -404,6 +404,21 @@ button:focus {
   display: none; /* Initially hide the disclaimer */
 }
 
+/* Styling for the leaderboard info text */
+#leaderboard-info-1 {
+  font-size: 1rem;
+  color: #000000;
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #f0f0f0; /* Light gray background */
+  border-radius: 8px; /* Rounded corners */
+  width: 90%; /* Take up 90% of the screen width */
+  max-width: 600px; /* Max width to ensure it's not too wide */
+  margin-left: auto;
+  margin-right: auto; /* Center it */
+  text-align: center;
+}
+
 /* Start Button Styling */
 #start-button {
   background-color: #d7300e;
