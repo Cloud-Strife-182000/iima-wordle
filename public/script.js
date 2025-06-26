@@ -79,14 +79,6 @@ function decodeJwtResponse(id_token) {
   return JSON.parse(jsonPayload);
 }
 
-function initializeGoogleAuth() {
-  gapi.load('auth2', function() {
-    gapi.auth2.init({
-      client_id: '1035999048110-9f4kn35u6iicg981ievos9mgki80fds9.apps.googleusercontent.com'  // Replace with your actual client ID
-    });
-  });
-}
-
 // Create game board for the wordle game
 function createBoard() {
   const board = document.getElementById('game-board');
@@ -327,10 +319,6 @@ function sendScoreToBackend(email, score) {
 
 // Sign out the user and reset the game state
 function signOut() {
-
-  // Use the Google API to sign the user out
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut();
 
   // Clear the user's session data from localStorage
   localStorage.removeItem('userEmail');  // Remove email from localStorage
