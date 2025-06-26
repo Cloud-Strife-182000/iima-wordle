@@ -1,15 +1,20 @@
 
-const WORDS = ["fachcha", "rg", "cp", "confundas", "wimwi", "dg", "gyaan", "ft"];
+const WORDS = [
+  "fachcha", "tuchcha", "cp", "rg", "wimwi", "dorm", "chaos", "trbs", "globe", "fra", "dcp"
+];
 
 const HINTS = [
-  "A fun word often used in casual conversations.",
-  "A short form for something that's frequently used in Indian culture.",
-  "An abbreviation used in the world of technology.",
-  "A confusing or tricky situation.",
-  "A playful term used to describe something quirky.",
-  "An abbreviation often seen in short-form content.",
-  "A word that's related to knowledge.",
-  "A two-letter word, commonly used in communication."
+  "A term for first-year students at IIM Ahmedabad, often used informally.",
+  "A playful term for second-year students at IIM Ahmedabad.",
+  "Short for Class Participation, an essential aspect of classroom assessments.",
+  "Abbreviation for relative grading, a system of assessment at IIM Ahmedabad.",
+  "Short for Well-known Institute of Management in Western India, referring to IIM Ahmedabad.",
+  "The residential blocks on campus, providing accommodation for students.",
+  "The annual cultural festival of IIM Ahmedabad, featuring events and competitions.",
+  "Short for 'The Red Brick Summit', an annual event that brings together thought leaders and experts.",
+  "A playful term used to describe blabbering in class to participate in discussions.",
+  "Short for Financial Reporting and Analysis, one of the most dreaded subjects in the first term.",
+  "Abbreviation for Desperate Class Participation, used humorously to describe excessive attempts at participating in class."
 ];
 
 let currentWords = [
@@ -270,7 +275,7 @@ function updateCurrentWordDisplay() {
 
 // Start the game when the start button is clicked
 function startGame() {
-  
+
   document.getElementById('start-button-container').style.display = 'none';  // Hide the start button after clicking
   document.getElementById('game-elements').style.display = 'block';  // Show the game elements
 
