@@ -79,6 +79,11 @@
     </div>
   </div>
 
+  <!-- Informational text about the leaderboard -->
+  <div id="leaderboard-info" style="font-size: 1rem; color: #777; margin-top: 30px; padding: 10px; background-color: #f0f0f0; border-radius: 8px;">
+    <p><strong>Note:</strong> Only your first attempt of the day will be added to the leaderboard. Make your first attempt count!</p>
+  </div>
+
    <!-- Sidebar with color code notes -->
   <div id="info-sidebar">
     <h3>Game Colors</h3>
@@ -143,6 +148,7 @@
 
         document.getElementById('welcome-message').style.display = 'none';
         document.getElementById('info-sidebar').style.display = 'block'; // Show sidebar
+        document.getElementById('leaderboard-info').style.display = 'block';
 
         createBoard();
         startTimer();
@@ -153,6 +159,7 @@
         document.getElementById('welcome-message').style.display = 'block';
         document.getElementById('game-elements').style.display = 'none';
         document.getElementById('info-sidebar').style.display = 'none';
+        document.getElementById('leaderboard-info').style.display = 'none';
         
       }
 
