@@ -1,9 +1,23 @@
+
 const WORDS = ["fachcha", "rg", "cp", "confundas", "wimwi", "dg", "gyaan", "ft"];
+
+const HINTS = [
+  "A fun word often used in casual conversations.",
+  "A short form for something that's frequently used in Indian culture.",
+  "An abbreviation used in the world of technology.",
+  "A confusing or tricky situation.",
+  "A playful term used to describe something quirky.",
+  "An abbreviation often seen in short-form content.",
+  "A word that's related to knowledge.",
+  "A two-letter word, commonly used in communication."
+];
+
 let currentWords = [
   WORDS[Math.floor(Math.random() * WORDS.length)], 
   WORDS[Math.floor(Math.random() * WORDS.length)], 
   WORDS[Math.floor(Math.random() * WORDS.length)]
 ];
+
 let currentWordIndex = 0;  // To track the current word the user is guessing
 let totalWords = 3;  // Total number of words in the game
 let secretWord = currentWords[currentWordIndex].toLowerCase();
@@ -244,10 +258,14 @@ function resetGame() {
   startTimer(); // Start the timer again
 }
 
-// Update the current word display text
+// Update the current word and hint display
 function updateCurrentWordDisplay() {
   const currentWordText = document.getElementById('current-word-text');
   currentWordText.textContent = `Word ${currentWordIndex + 1}/${totalWords}`;
+  
+  // Display the hint for the current word
+  const hintText = document.getElementById('current-hint');
+  hintText.textContent = `Hint: ${HINTS[currentWordIndex]}`;
 }
 
 // After the game is won, send the score to the backend (to add to the leaderboard)
