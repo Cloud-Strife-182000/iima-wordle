@@ -5,6 +5,7 @@ let currentWords = [
   WORDS[Math.floor(Math.random() * WORDS.length)]
 ];
 let currentWordIndex = 0;  // To track the current word the user is guessing
+let totalWords = 3;  // Total number of words in the game
 let secretWord = currentWords[currentWordIndex].toLowerCase();
 let currentGuess = '';
 let currentRow = 0;
@@ -15,6 +16,7 @@ let guessesUsed = 0;
 let score = 0;
 let individualScores = [];  // To track score for each word
 let totalScore = 0;  // To track total score across all words
+
 
 // Google login logic
 function handleCredentialResponse(response) {
@@ -78,6 +80,8 @@ function createBoard() {
     }
     board.appendChild(row);
   }
+
+  updateCurrentWordDisplay();
 }
 
 // Timer logic
@@ -213,6 +217,9 @@ function nextWord() {
     timer = 0;
     clearInterval(timerInterval); // Stop the timer
     startTimer(); // Start the timer again
+
+    updateCurrentWordDisplay();
+
   }
 }
 
@@ -235,6 +242,12 @@ function resetGame() {
   document.getElementById('timer').textContent = `Time: 0s`; // Reset timer display
   clearInterval(timerInterval); // Stop the timer
   startTimer(); // Start the timer again
+}
+
+// Update the current word display text
+function updateCurrentWordDisplay() {
+  const currentWordText = document.getElementById('current-word-text');
+  currentWordText.textContent = `Word ${currentWordIndex + 1}/${totalWords}`;
 }
 
 // After the game is won, send the score to the backend (to add to the leaderboard)
