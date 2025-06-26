@@ -30,11 +30,15 @@
       .then(response => response.json())
       .then(data => {
         const leaderboardList = document.getElementById('leaderboard-list');
-        data.forEach(entry => {
-          const li = document.createElement('li');
-          li.textContent = `${entry.player_name}: ${entry.score}`;
-          leaderboardList.appendChild(li);
-        });
+        if (data.length === 0) {
+          leaderboardList.innerHTML = '<li>No scores available yet.</li>';
+        } else {
+          data.forEach(entry => {
+            const li = document.createElement('li');
+            li.textContent = `${entry.email}: ${entry.score}`;  // Display email instead of player_name
+            leaderboardList.appendChild(li);
+          });
+        }
       })
       .catch(err => {
         console.error('Error fetching leaderboard:', err);

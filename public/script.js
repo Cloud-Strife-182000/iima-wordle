@@ -14,7 +14,7 @@ let timerInterval;
 let guessesUsed = 0;
 let score = 0;
 let individualScores = [];  // To track score for each word
-const email = '';  // Placeholder for user's email
+let email = '';  // Placeholder for user's email
 
 // Google login logic
 function handleCredentialResponse(response) {
@@ -223,13 +223,13 @@ function resetGame() {
 }
 
 // After the game is won, send the score to the backend (to add to the leaderboard)
-function sendScoreToBackend(playerName, score) {
+function sendScoreToBackend(email, score) {
   fetch('/add-score', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ playerName, score }),
+    body: JSON.stringify({ email, score }),  // Send email with score
   })
   .then(response => response.json())
   .then(data => {

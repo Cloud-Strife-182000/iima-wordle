@@ -18,7 +18,7 @@ client.connect();
 client.query(`
   CREATE TABLE IF NOT EXISTS leaderboard (
     id SERIAL PRIMARY KEY,
-    player_name VARCHAR(100),
+    email VARCHAR(255) UNIQUE,
     score NUMERIC,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
@@ -35,26 +35,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API endpoint to add a score
 app.post('/add-score', express.json(), (req, res) => {
-  const { playerName, score } = req.body;
-  console.log('Received score:', playerName, score); // Log received data
-  
-  // Insert the score into the database
-  client.query('INSERT INTO leaderboard (player_name, score) VALUES ($1, $2)', [playerName, score], (err, result) => {
-    if (err) {
-      console.error('Error inserting score:', err);
-      res.status(500).send('Error saving score');
-    } else {
-      console.log('Score saved successfully');
-      res.status(200).send('Score saved successfully');
-    }
-  });
-});
+  // Destructure the email and score from the request body
+  const { email, score } = req.body;
 
+  // Insert the email and score into the leaderboard table
+  client.query(
+    'INSERT INTO leaderboard (email, score) VALUES ($1, $2)', 
+    [email, score], 
+    (err, result) => {
+      if (err) {
+        console.error('Error inserting score:', err);
+        res.status(500).send('Error saving score');
+      } else {
+        console.log('Score saved successfully');
+        res.status(200).send('Score saved successfully');
+      }
+    }
+  );
+});
 
 // API endpoint to get the leaderboard
 app.get('/leaderboard', (req, res) => {
   // Fetch the top 10 scores from the leaderboard table
-  client.query('SELECT player_name, score FROM leaderboard ORDER BY score DESC LIMIT 10', (err, result) => {
+  client.query('SELECT email, score FROM leaderboard ORDER BY score DESC LIMIT 10', (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error retrieving leaderboard');
