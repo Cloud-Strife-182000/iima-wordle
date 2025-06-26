@@ -70,6 +70,10 @@
       const email = userInfo.email;
       document.getElementById('user-email').textContent = email;
 
+      // Store user info in localStorage to persist sign-in state
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userSignedIn', true);
+
       // Hide the Google Sign-In button and show the game elements
       document.getElementById('google-sign-in-btn').style.display = 'none';
       document.getElementById('user-info').style.display = 'block';
@@ -89,19 +93,31 @@
 
     // Initial check to hide the game elements if the user is not signed in
     window.onload = () => {
-      // Check if user is already signed in (If not, game elements are hidden)
-      const isSignedIn = false;  // Initially, assume the user is not signed in
-      if (!isSignedIn) {
+      // Check if the user is already signed in by checking localStorage
+      const userSignedIn = localStorage.getItem('userSignedIn');
+      const userEmail = localStorage.getItem('userEmail');
+
+      if (userSignedIn === 'true' && userEmail) {
+        // If the user is signed in, display their email and show the game elements
+        document.getElementById('user-email').textContent = userEmail;
+        document.getElementById('google-sign-in-btn').style.display = 'none';
+        document.getElementById('user-info').style.display = 'block';
+        document.getElementById('game-elements').style.display = 'block';
+      } else {
+        // If the user is not signed in, show the Google Sign-In button
+        document.getElementById('google-sign-in-btn').style.display = 'block';
         document.getElementById('game-elements').style.display = 'none';
       }
+
       createBoard();
       startTimer();  // Start the timer when the page loads
 
+      // Initially hide game-related messages and buttons
       document.getElementById('win-message').style.display = 'none';
       document.getElementById('consolation-message').style.display = 'none';
-      document.getElementById('score-message').style.display = 'none'; // Initially hide the score message
-      document.getElementById('reset-game-button').style.display = 'none'; // Initially hide the reset button
-      document.getElementById('congratulations-message').style.display = 'none'; // Initially hide the congratulations message
+      document.getElementById('score-message').style.display = 'none'; 
+      document.getElementById('reset-game-button').style.display = 'none'; 
+      document.getElementById('congratulations-message').style.display = 'none';
     };
   </script>
 </body>
