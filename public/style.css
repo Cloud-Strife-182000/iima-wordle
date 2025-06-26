@@ -377,12 +377,13 @@ button:focus {
 #current-word-info {
   width: 80%;
   max-width: 600px;
-  margin: 20px auto;
-  padding: 15px;
+  margin: 10px auto;
+  padding: 10px;
   background-color: #f5f5f5;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-size: 1.23rem;
+  font-weight: bold;
   color: #333;
   font-family: Arial, sans-serif;
 }
