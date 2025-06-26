@@ -39,8 +39,11 @@ function handleCredentialResponse(response) {
   document.getElementById('game-elements').style.display = 'block';
   document.getElementById('check-word-button').style.display = 'inline-block'; // Show the "Check Word" button
 
-   // Hide the welcome message container after login
+  // Hide the welcome message container after login
   document.getElementById('welcome-message').style.display = 'none';
+
+  // Show the sidebar after user has signed in
+  document.getElementById('info-sidebar').style.display = 'block'; // Show sidebar
 }
 
 

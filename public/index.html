@@ -129,10 +129,17 @@
         document.getElementById('google-sign-in-btn').style.display = 'none';
         document.getElementById('user-info').style.display = 'block';
         document.getElementById('game-elements').style.display = 'block';
+
+        document.getElementById('welcome-message').style.display = 'none';
+        document.getElementById('info-sidebar').style.display = 'block'; // Show sidebar
+
       } else {
         // If the user is not signed in, show the Google Sign-In button
         document.getElementById('google-sign-in-btn').style.display = 'block';
+        document.getElementById('welcome-message').style.display = 'block';
         document.getElementById('game-elements').style.display = 'none';
+        document.getElementById('info-sidebar').style.display = 'none';
+        
       }
 
       createBoard();
