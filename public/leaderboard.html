@@ -14,9 +14,20 @@
 
   <div id="leaderboard">
     <h2>Top 10 Scores</h2>
-    <ul id="leaderboard-list">
-      <!-- List of leaderboard entries will go here -->
-    </ul>
+
+    <!-- Create the table to display the leaderboard -->
+    <table id="leaderboard-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Email</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboard-list">
+        <!-- Leaderboard entries will be populated here -->
+      </tbody>
+    </table>
   </div>
 
   <!-- Add button to go back to the game -->
@@ -25,18 +36,23 @@
   </div>
 
   <script>
-    // Fetch leaderboard data and display it
+    // Fetch leaderboard data and display it as a table
     fetch('/leaderboard')
       .then(response => response.json())
       .then(data => {
         const leaderboardList = document.getElementById('leaderboard-list');
+
         if (data.length === 0) {
-          leaderboardList.innerHTML = '<li>No scores available yet.</li>';
+          leaderboardList.innerHTML = '<tr><td colspan="3">No scores available yet.</td></tr>';
         } else {
-          data.forEach(entry => {
-            const li = document.createElement('li');
-            li.textContent = `${entry.email}: ${entry.score}`;  // Display email instead of player_name
-            leaderboardList.appendChild(li);
+          data.forEach((entry, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${entry.email}</td>
+              <td>${entry.score}</td>
+            `;
+            leaderboardList.appendChild(row);
           });
         }
       })
