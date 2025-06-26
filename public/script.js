@@ -57,17 +57,8 @@ function handleCredentialResponse(response) {
   localStorage.setItem('userEmail', email);
   localStorage.setItem('userSignedIn', true);
 
-  // Hide the Google Sign-In button and show the game elements
-  document.getElementById('google-sign-in-btn').style.display = 'none';
-  document.getElementById('user-info').style.display = 'block';
-  document.getElementById('game-elements').style.display = 'block';
-  document.getElementById('check-word-button').style.display = 'inline-block'; // Show the "Check Word" button
-
-  // Hide the welcome message container after login
-  document.getElementById('welcome-message').style.display = 'none';
-
-  // Show the sidebar after user has signed in
-  document.getElementById('info-sidebar').style.display = 'block'; // Show sidebar
+  signInCheck();
+  
 }
 
 
@@ -341,6 +332,40 @@ function signOut() {
   clearInterval(timerInterval);
   timer = 0;
   document.getElementById('timer').textContent = 'Time: 0s';
+}
+
+function signInCheck(){
+
+  const userSignedIn = localStorage.getItem('userSignedIn');
+  const userEmail = localStorage.getItem('userEmail');
+
+  if (userSignedIn === 'true' && userEmail) {
+
+    // If the user is signed in, display their email and show the game elements
+    document.getElementById('user-email').textContent = userEmail;
+    document.getElementById('google-sign-in-btn').style.display = 'none';
+    document.getElementById('welcome-message').style.display = 'none';
+    document.getElementById('user-info').style.display = 'block';
+    document.getElementById('start-button-container').style.display = 'block';
+    document.getElementById('signout-button-container').style.display = 'block'; // Show sign-out button
+
+  } else {
+    // If the user is not signed in, show the Google Sign-In button
+    document.getElementById('google-sign-in-btn').style.display = 'block';
+    document.getElementById('welcome-message').style.display = 'block';
+    document.getElementById('game-elements').style.display = 'none';
+    document.getElementById('info-sidebar').style.display = 'none';
+    document.getElementById('leaderboard-info').style.display = 'none';
+     
+  }
+
+  // Initially hide game-related messages and buttons
+  document.getElementById('win-message').style.display = 'none';
+  document.getElementById('consolation-message').style.display = 'none';
+  document.getElementById('score-message').style.display = 'none'; 
+  document.getElementById('reset-game-button').style.display = 'none'; 
+  document.getElementById('congratulations-message').style.display = 'none';
+
 }
 
 // Initialize the game when the page loads

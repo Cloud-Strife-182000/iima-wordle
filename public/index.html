@@ -112,36 +112,9 @@
 
     // Initial check to hide the game elements if the user is not signed in
     window.onload = () => {
-      // Check if the user is already signed in by checking localStorage
-      const userSignedIn = localStorage.getItem('userSignedIn');
-      const userEmail = localStorage.getItem('userEmail');
+      
+      signInCheck();
 
-      if (userSignedIn === 'true' && userEmail) {
-
-        // If the user is signed in, display their email and show the game elements
-        document.getElementById('user-email').textContent = userEmail;
-        document.getElementById('google-sign-in-btn').style.display = 'none';
-        document.getElementById('welcome-message').style.display = 'none';
-        document.getElementById('user-info').style.display = 'block';
-        document.getElementById('start-button-container').style.display = 'block';
-        document.getElementById('signout-button-container').style.display = 'block'; // Show sign-out button
-
-      } else {
-        // If the user is not signed in, show the Google Sign-In button
-        document.getElementById('google-sign-in-btn').style.display = 'block';
-        document.getElementById('welcome-message').style.display = 'block';
-        document.getElementById('game-elements').style.display = 'none';
-        document.getElementById('info-sidebar').style.display = 'none';
-        document.getElementById('leaderboard-info').style.display = 'none';
-        
-      }
-
-      // Initially hide game-related messages and buttons
-      document.getElementById('win-message').style.display = 'none';
-      document.getElementById('consolation-message').style.display = 'none';
-      document.getElementById('score-message').style.display = 'none'; 
-      document.getElementById('reset-game-button').style.display = 'none'; 
-      document.getElementById('congratulations-message').style.display = 'none';
     };
   </script>
 </body>
