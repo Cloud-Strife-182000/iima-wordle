@@ -12,6 +12,18 @@
     <h1>IIMA Wordle</h1>
   </div>
 
+  <!-- Centered Welcome Message -->
+  <div id="welcome-message">
+    <h3>Welcome to IIMA Wordle!</h3>
+    <p>Get ready to challenge your word skills in this exciting game!</p>
+    <p>Here's how it works:</p>
+    <p>You're going to guess a secret word. For each guess:</p>
+    <p><span class="color-box green"></span> <strong>Green:</strong> Correct letter, in the right place!</p>
+    <p><span class="color-box yellow"></span> <strong>Yellow:</strong> Correct letter, but in the wrong place!</p>
+    <p><span class="color-box gray"></span> <strong>Gray:</strong> Incorrect letter, try something else!</p>
+    <p>Think you're ready? Sign in with Google and start guessing!</p>
+  </div>
+
   <!-- Show user email after successful login -->
   <div id="user-info" style="display: none;">
     <p>Welcome, <span id="user-email"></span></p>
@@ -54,6 +66,17 @@
       <!-- Add the Leaderboard button here -->
       <button id="leaderboard-button" onclick="window.location.href='leaderboard.html'">View Leaderboard</button>
     </div>
+  </div>
+
+   <!-- Sidebar with color code notes -->
+  <div id="info-sidebar">
+    <h3>Game Colors</h3>
+    <p class="note">
+      The following colors represent different outcomes in the game:
+    </p>
+    <p><span class="color-box green"></span> <strong>Green:</strong> Correct letter and position</p>
+    <p><span class="color-box yellow"></span> <strong>Yellow:</strong> Correct letter but wrong position</p>
+    <p><span class="color-box gray"></span> <strong>Gray:</strong> Incorrect letter</p>
   </div>
 
   <script src="script.js"></script>

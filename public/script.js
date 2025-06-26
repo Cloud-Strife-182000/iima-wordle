@@ -38,6 +38,9 @@ function handleCredentialResponse(response) {
   document.getElementById('user-info').style.display = 'block';
   document.getElementById('game-elements').style.display = 'block';
   document.getElementById('check-word-button').style.display = 'inline-block'; // Show the "Check Word" button
+
+   // Hide the welcome message container after login
+  document.getElementById('welcome-message').style.display = 'none';
 }
 
 

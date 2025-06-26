@@ -254,6 +254,115 @@ button:focus {
   background-color: #0056b3;
 }
 
+/* Sidebar styling */
+#info-sidebar {
+  position: fixed;
+  top: 20%;
+  right: 10%;
+  width: 250px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+  display: none; /* Initially hide the sidebar */
+}
+
+#info-sidebar h3 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#info-sidebar p {
+  margin: 10px 0;
+}
+
+#info-sidebar .color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+#info-sidebar .green {
+  background-color: #28a745; /* Green color */
+}
+
+#info-sidebar .yellow {
+  background-color: #ffc107; /* Yellow color */
+}
+
+#info-sidebar .gray {
+  background-color: #6c757d; /* Gray color */
+}
+
+#info-sidebar .note {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Centered Welcome Message */
+#welcome-message {
+  position: fixed;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  color: #333;
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  z-index: 1000;
+}
+
+#welcome-message h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+#welcome-message p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 10px 0;
+  text-align: center;
+}
+
+#welcome-message .color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#welcome-message .green {
+  background-color: #28a745;
+  text-align: center;
+}
+
+#welcome-message .yellow {
+  background-color: #ffc107;
+  text-align: center;
+}
+
+#welcome-message .gray {
+  background-color: #6c757d;
+  text-align: center;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .box, input[type="text"] {
