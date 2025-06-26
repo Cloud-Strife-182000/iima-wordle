@@ -14,10 +14,11 @@ let timerInterval;
 let guessesUsed = 0;
 let score = 0;
 let individualScores = [];  // To track score for each word
-let email = '';  // Placeholder for user's email
+let totalScore = 0;  // To track total score across all words
 
 // Google login logic
 function handleCredentialResponse(response) {
+
   const id_token = response.credential;
   console.log('ID Token:', id_token);
 
@@ -25,8 +26,11 @@ function handleCredentialResponse(response) {
   const userInfo = decodeJwtResponse(id_token);
   console.log('User Info:', userInfo);
 
+  // Store the user's email in localStorage
+  const email = userInfo.email;
+  localStorage.setItem('userEmail', email);  // Store email in localStorage
+
   // Display user's email
-  email = userInfo.email;
   document.getElementById('user-email').textContent = email;
 
   // Hide the Google Sign-In button and show the game elements
@@ -35,6 +39,7 @@ function handleCredentialResponse(response) {
   document.getElementById('game-elements').style.display = 'block';
   document.getElementById('check-word-button').style.display = 'inline-block'; // Show the "Check Word" button
 }
+
 
 // Decode JWT Token to extract user details
 function decodeJwtResponse(id_token) {
@@ -146,7 +151,8 @@ function checkGuess() {
     if (currentWordIndex === currentWords.length - 1) {
       document.getElementById('reset-game-button').style.display = 'block';  // Show the reset button
       displayScore();  // Show the total score once the game is completed
-      sendScoreToBackend(email, score);  // Send the score to the backend
+      const email = localStorage.getItem('userEmail');
+      sendScoreToBackend(email, totalScore);  // Send the score to the backend
     } else {
       document.getElementById('next-word-button').style.display = 'block';  // Show the next word button
     }
@@ -179,7 +185,7 @@ function calculateScore() {
 // Display total score
 function displayScore() {
   const scoreMessage = document.getElementById('score-message');
-  const totalScore = individualScores.reduce((acc, score) => acc + score, 0);  // Sum all individual scores
+  totalScore = individualScores.reduce((acc, score) => acc + score, 0);  // Sum all individual scores
   scoreMessage.textContent = `Your total score: ${totalScore}`;
   scoreMessage.style.display = 'block';  // Show the score message
 }
