@@ -407,7 +407,7 @@ button:focus {
 /* Sign Out Button Styling */
 #signout-button {
   background-color: #e8e8e8;
-  color: white;
+  color: black;
   padding: 12px 24px;
   border-radius: 8px;
   font-size: 18px;
