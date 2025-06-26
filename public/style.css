@@ -385,7 +385,7 @@ button:focus {
 
 /* Start Button Styling */
 #start-button {
-  background-color: #007bff; /* IIMA blue */
+  background-color: #d7300e;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -396,7 +396,7 @@ button:focus {
 }
 
 #start-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #ff0000c3; /* Darker red on hover */
   transform: scale(1.05);
 }
 
