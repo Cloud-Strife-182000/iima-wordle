@@ -244,7 +244,15 @@ function nextWord() {
 
 // Reset the game to start over
 function resetGame() {
+  
   currentWordIndex = 0;
+
+  currentWords = [
+  WORDS[Math.floor(Math.random() * WORDS.length)], 
+  WORDS[Math.floor(Math.random() * WORDS.length)], 
+  WORDS[Math.floor(Math.random() * WORDS.length)]
+  ];
+
   secretWord = currentWords[currentWordIndex].toLowerCase();
   gameWon = false;
   currentRow = 0;
